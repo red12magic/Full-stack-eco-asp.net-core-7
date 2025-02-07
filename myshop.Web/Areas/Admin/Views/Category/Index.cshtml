@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Category>
+
+
+@{
+    ViewBag.PageTitle = "Category Management";
+    ViewBag.CardTitle = "View Category";
+ 
+}
+
+
+<div>
+
+
+    <a href="/Admin/Category/Create" class="btn btn-primary">Create</a>
+
+</div>
+
+<br />
+
+<table class="table table-hover" width="100%">
+    <thead class="text-bold">
+    <tr>
+        <td>Name</td>
+        <td>Description</td>
+        <td>Data Created</td>
+        <td>Actions</td>
+    </tr>
+    </thead>
+
+
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.CategotyName</td>
+            <td>@item.CategoryDescription</td>
+            <td>@item.CreatedTimeCategory</td>
+            <td>
+
+                <a class="btn btn-success" href="/Admin/Category/Edit/@item.CategoryID ">Edit</a>
+                <a class="btn btn-danger" href="/Admin/Category/Delete/@item.CategoryID ">Delete</a>
+
+            </td>
+        </tr>
+    }
+</table>
+
+
+

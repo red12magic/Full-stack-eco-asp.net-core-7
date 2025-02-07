@@ -1,0 +1,85 @@
+﻿@model ShoppingCart
+
+
+
+
+<form method="post" class="item_detail">
+
+
+    <input hidden asp-for="ProductId" />
+
+    <div class="container">
+
+
+
+
+
+
+        <table>
+            <tr>
+
+                <td style=" width:50%;">
+                    <div class="details_item">
+                        <h1 class="name">Name:@Model.Product.ProductName</h1>
+
+                        <div class="price">
+                            <p>Price:<span>@Model.Product.ProductPrice$</span></p>
+                        </div>
+
+
+
+
+                        <p class="text_p">@Model.Product.ProductDescription</p>
+
+
+
+
+
+
+                        <input id="inputQuantity" asp-for="Count" class="quantity-input" value="1" min="1" />
+
+
+
+
+
+                        <button type="submit">Add to Cart <i class="fa-solid fa-cart-arrow-down"></i></button>
+
+
+                    </div>
+                </td>
+
+
+                <td class ="td_details_img">
+                    <div class="img_item">
+                        <div class="big_img">
+                            <img id="bigImg" src="~/@Model.Product.ProductImg" alt="">
+                        </div>
+
+                        <div class="sm_imgs">
+                            <img onclick="ChangeItemImage(this.src)" src="~/@Model.Product.ProductImg" alt="">
+                            <img onclick="ChangeItemImage(this.src)" src="~/@Model.Product.ProductImg" alt="">
+                            <img onclick="ChangeItemImage(this.src)" src="~/@Model.Product.ProductImg" alt="">
+                            <img onclick="ChangeItemImage(this.src)" src="~/@Model.Product.ProductImg" alt="">
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+        </table>
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+</form>
+
+
+
+

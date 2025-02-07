@@ -1,0 +1,75 @@
+﻿@model ProductVM
+
+@{
+	ViewBag.PageTitle = "Product Management";
+	ViewBag.CardTitle = "Edit Product";
+	
+}
+
+
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="Edit" method="post" enctype="multipart/form-data">
+			<input type="hidden" asp-for="Product.ProductID" />
+			<input type="hidden" asp-for="Product.ProductImg" />
+			<div asp-validation-summary="ModelOnly" class="text-denger"></div>
+			<div class="mb-3">
+				<label asp-for="Product.ProductName"></label>
+				<input asp-for="Product.ProductName" class="form-control" />
+				<span asp-validation-for="Product.ProductName" class="text-danger"></span>
+			</div>
+			<div class="mb-3">
+				<label asp-for="Product.ProductDescription"></label>
+				<input asp-for="Product.ProductDescription" class="form-control" />
+				<span asp-validation-for="Product.ProductDescription" class="text-danger"></span>
+			</div>
+
+			<div class="mb-3">
+				<label asp-for="Product.ProductPrice"></label>
+				<input asp-for="Product.ProductPrice" class="form-control" />
+				<span asp-validation-for="Product.ProductPrice" class="text-danger"></span>
+			</div>
+
+
+			<div class="mb-3">
+				<label asp-for="Product.ProductImg"></label>
+				<input type="file" name="upload" id="file" class="form-control" />
+				<!--<span asp-validation-for="ProductImg" class="text-danger"></span>-->
+			</div>
+
+
+			<div class="mb-3">
+				<label asp-for="Product.CategoryID"></label>
+				<select asp-for="Product.CategoryID" class="form-control" asp-items="Model.CategoryList">
+					<option disabled selected>-- Select Category --</option>
+				</select>
+
+				<!--<span asp-validation-for="ProductImg" class="text-danger"></span>-->
+			</div>
+
+
+
+			<div class="form-group">
+				<input type="submit" value="Sava" class="btn btn-success" />
+
+			</div>
+		</form>
+
+
+	</div>
+	<div class="col-md-4">
+		<div class="container">
+			<img src="~/@Model.Product.ProductImg" width="300" height="300" />
+		</div>
+	</div>
+
+</div>
+
+
+<div>
+	<a asp-action="Index" asp-controller="Category">Back to Index</a>
+</div>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,103 @@
+﻿@model ShoppingCartVM
+@using Microsoft.Extensions.Options
+@inject IOptions<myshop.Utilities.StripeData> Stripe
+
+<section class="checkout">
+    <div class="container">
+
+
+
+        
+        <form method="post">
+            <div class="address">
+                <h2>Delivery Address</h2>
+
+                <div class="inputs">
+                    
+                    <label for="">Name</label>
+                    <input asp-for="OrderHeader.Name" type="text" class="form-control">
+                    <span asp-validation-for="OrderHeader.Name"></span>
+
+
+
+                    <label for="">City</label>
+                    <input asp-for="OrderHeader.City" type="text">
+                    <span asp-validation-for="OrderHeader.City"></span>
+
+
+
+                    <label for="">Phone Number</label>
+                    <input asp-for="OrderHeader.PhoneNumber" type="text">
+                    <span asp-validation-for="OrderHeader.PhoneNumber"></span>
+
+
+                    <label for="">Address</label>
+                    <input type="text" asp-for="OrderHeader.Address" />
+                    <span asp-validation-for="OrderHeader.Address"></span>
+
+                
+               
+                   <div class="button_div">
+                        <button type="submit"> Place Order</button>
+                </div>
+                </div>
+            </div>
+  
+        </form>
+
+
+         <!--  <div class="coupon">
+                <h2>Coupon Code</h2>
+                <div class="inputs">
+                    <label for="">Coupon Code</label>
+                    <input type="text" placeholder="Enter your coupon">
+                </div>
+               </div>-->
+
+
+
+        <div class="ordersummary">
+            <h1>My Cart</h1>
+            <div class="items">
+
+
+                @foreach (var item in Model.CartsList)
+                {
+
+                    <div class="item_cart">
+                        <img src="~/@item.Product.ProductImg" alt="">
+
+                        <div class="content">
+                            <h4>@item.Product.ProductName</h4>
+                            <p class="pricr_cart">Pricr: <span>$@item.Product.ProductPrice</span> </p>
+                        </div>
+                        <div class="btn-group" role="group">
+
+                            <a class="btn btn-primary" asp-action="Plus" asp-route-cartid="@item.Id">+</a>
+                            <span style="margin:5px;">@item.Count</span>
+                            <a class="btn btn-primary" asp-action="Minus" asp-route-cartid="@item.Id">-</a>
+
+                        </div>
+                        <div class="btn-group" role="group">
+
+                            <a asp-action="Remove" asp-route-cartid="@item.Id" class="btn btn-danger"><span class="delete_item"><i class="fa-solid fa-trash-can"></i></span></a>
+
+                        </div>
+                    </div>
+
+                }
+        
+
+                <div class="total">
+                    <p>total</p>
+                    <span>$@Model.OrderHeader.TotalPrice</span>
+                </div>
+
+
+            </div>
+      
+           
+
+    </div>
+    </div>
+</section>

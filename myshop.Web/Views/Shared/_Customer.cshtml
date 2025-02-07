@@ -1,0 +1,181 @@
+﻿@using Microsoft.AspNetCore.Http
+@using myshop.Utilities
+@inject IHttpContextAccessor httpContextAccessor
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyShop</title>
+    <link rel="stylesheet" href="~/caustomer/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <link rel="stylesheet" href="~/caustomer/css/login_regs.css">
+
+
+
+    <!--  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />-->
+
+
+</head>
+<body>
+
+    <header>
+        <div class="container top-nav">
+            <a href="#" class="logo"><img src="img/baraa.jpg" alt=""></a>
+            <form action="" class="search">
+                <input type="search" placeholder="Search for products">
+                <button type="submit">Search</button>
+            </form>
+            <div onclick="open_cart()" class="cart_header">
+            @if(User.Identity.IsAuthenticated){
+
+          
+                <div class="icon_cart">
+                        <a href="/Customer/Cart/Summary"> <i class="fa-solid fa-cart-plus"></i></a>
+     @*                @if (httpContextAccessor.HttpContext.Session.GetInt32(SD.SessionKey)!=null)
+                    {
+
+                        <span class="count_item">@httpContextAccessor.HttpContext.Session.GetInt32(SD.SessionKey)</span>
+                    }else
+                    {
+                        <span class="count_item">0</span>
+                    } *@
+
+
+                    @await Component.InvokeAsync("ShoppingCart")
+
+
+
+
+                </div>
+                <div class="tottal_price">
+                    <p>My Cart:</p>
+                    <p class="price_cart_Head">$0</p>
+                </div>
+            
+            }
+            </div>
+
+        </div>
+
+        <nav>
+            <div class="links container">
+                <ul>
+                    <li class="active"><a href="/Customer/Home/Index">Home</a></li>
+                    <li><a href=""></a>All Products</li>
+                    <li><a href=""></a>about us</li>
+                    <li><a href=""></a>contact</li>
+                </ul>
+                <div >
+
+                    <partial name="_LoginPartial" />
+                  
+                </div>
+           
+            </div>
+  
+        </nav>
+   
+    </header>
+
+
+  
+
+
+  
+    @RenderBody()
+
+
+
+
+
+
+    <footer>
+        <div class="container">
+
+            <div class="big_row">
+                <img src="img/logo-black.png" alt="">
+
+                <div class="hotline">
+                    <i class="fa-solid fa-phone"></i>
+                    <div class="text">
+                        <h5>Hotline Free 24/24:</h5>
+                        <h6>0568230334</h6>
+                    </div>
+                </div>
+                <p>Lorem ipsum, dolor sit amet consectetur </p>
+            </div>
+
+
+            <div class="row">
+                <h4>FAQs & Help</h4>
+
+                <div class="links">
+                    <a href="#">F.A.Q</a>
+                    <a href="#">Ordering Tracking</a>
+                    <a href="#">Contacts</a>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+                <h4>Shipping & Delivery</h4>
+
+                <div class="links">
+                    <a href="#">Delivery Information</a>
+                    <a href="#">Payment & Shipping</a>
+                    <a href="#">Shipping Guide</a>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+                <h4>Information</h4>
+
+                <div class="links">
+                    <a href="#">Popular</a>
+                    <a href="#">Our Services</a>
+                    <a href="#">Your Account</a>
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="bottom_footer">
+            <div class="container">
+                <p>Copyright &copy; <span>MyShop</span> all rights reserved</p>
+
+                <div class="payment_img">
+                    <img src="img/payment-1.png" alt="">
+                    <img src="img/payment-2.png" alt="">
+                    <img src="img/payment-3.png" alt="">
+                    <img src="img/payment-4.png" alt="">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="~/caustomer/js/main.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="~/caustomer/js/swiper.js"></script>
+
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
